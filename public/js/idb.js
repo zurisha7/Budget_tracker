@@ -7,7 +7,7 @@ const request = indexedDB.open('budget-tracker', 1);
 request.onupgradeneeded = function(event) {
     const db = event.target.result;
 // stores budget added while offline
-db.createObjectStore('new_transaction', { autoIncrement: true });
+db.createObjectStore('new_transaction', { keyPath: "myKey" });
 
 //when online again upload 
 request.onsuccess = function(event) {
