@@ -7,7 +7,8 @@ const request = indexedDB.open('budget-tracker', 1);
 request.onupgradeneeded = function(event) {
     const db = event.target.result;
 // stores budget added while offline
-db.createObjectStore('new_transaction', { keyPath: "myKey" });
+db.createObjectStore('new_transaction', { autoIncrement: true });
+};
 
 //when online again upload 
 request.onsuccess = function(event) {
@@ -21,14 +22,16 @@ if(navigator.onLine) {
 request.onerror = function(event) {
     console.log(event.target.errorCode);
 };
-}
+
 
 // a function to save the submitted info when there is no internet connection
 function saveRecord(record){
     const transaction = db.transaction(['new_transaction'], 'readwrite');
     const transactionObjectStore = transaction.objectStore('new_transaction');
 
-    transactionObjectStore.add(record);
+     transactionObjectStore.add(record);
+
+    
 };
 
 function uploadTransaction() {
@@ -41,7 +44,7 @@ function uploadTransaction() {
 
     getAll.onsuccess = function() {
         if(getAll.result.length > 0) {
-            fetch('api/transaction', {
+            fetch('api/transaction/bulk', {
                 method: 'POST',
                 body: JSON.stringify(getAll.result),
                 headers: { 
