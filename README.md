@@ -21,5 +21,6 @@ Andrea West
  
  ##Screenshot
  
-![Uploading cryptic-hollows-61543.herokuapp.com_.png…]()
 
+
+![cryptic-hollows-61543 herokuapp com_](https://user-images.githubusercontent.com/100632883/181669205-9ebeb4f4-0b0f-4fad-acb6-410656672810.png)
